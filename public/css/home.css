@@ -1,0 +1,149 @@
+* {
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+html, body {
+    display: grid;
+    height: 100%;
+    place-items : center;
+    background-color:#1e90ff;
+}
+
+.wrapper {
+    width: 380px;
+    background: white;
+    border-radius: 5px;
+}
+.wrapper .log_title {
+    line-height: 80px;
+    background: #1c69c6;
+    text-align: center;
+
+    border-radius: 5px 5px 0 0;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+}
+.linkeo_logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+  }
+.wrapper .menus {
+    padding: 30px 25px 25px 25px;
+}
+.wrapper .menus .row input{
+    height: 90%;
+ width: 80%;
+ padding-left: 60px;
+ outline: none;
+ border-radius: 5px;
+ border: 1px solid lightgrey;
+}
+.wrapper .menus .row{
+    height: 45px;
+
+    margin-bottom: 15px;
+    position: relative;
+}
+.wrapper .menus .button a{
+    padding-left: 0px;
+    background: #2980b9;
+    border: 1px solid #2980b9;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+.wrapper .menus .button button{
+    padding-left: 0px;
+    background: #2980b9;
+    border: 1px solid #2980b9;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+.logout {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-bottom: 3%;
+}
+.logout_icon {
+    text-decoration: none;
+
+}
+.logout_icon i {
+    font-size: 25px;
+}
+
+#qr-reader {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+
+
+/**responsive design*/
+@media (max-width: 650px)
+ {
+    .wrapper {
+        width: 334px;
+        background: white;
+        border-radius: 5px;
+        height: 430px;
+      }
+      .wrapper .log_title {
+        line-height: 80px;
+        background: #2980b9;
+        text-align: center;
+        padding-left: 0;
+        border-radius: 5px 5px 0 0;
+        color: white;
+        font-size: 22px;
+        font-weight: 600;
+      }
+      .wrapper .menus .row input {
+        height: 90%;
+        width: 78%;
+        padding-left: 60px;
+        outline: none;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+      }
+
+      .wrapper .menus {
+        padding: 30px 25px 25px 25px;
+        margin-top: 0.5rem;
+      }
+
+      .wrapper .menus .button a {
+        padding-left: 0px;
+        background: #2980b9;
+        border: 1px solid #2980b9;
+        cursor: pointer;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+
+      }
+      .wrapper .menus .button button {
+        padding-left: 0px;
+        background: #2980b9;
+        border: 1px solid #2980b9;
+        cursor: pointer;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+
+      }
+ }
+

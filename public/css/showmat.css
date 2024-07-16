@@ -1,0 +1,131 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #3498db;
+    background-size: cover;
+}
+.container {
+    width: 100%;
+    max-width: 650px;
+    background: #f5f7f8;
+    padding: 28px;
+    margin: 0 28px;
+    border-radius: 10px;
+    box-shadow: inset -2px 2px 2px white;
+}
+
+.form-title {
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+    padding-bottom: 6px;
+    color: #6ca6e4;
+    font-family: "Poppins", sans-serif;
+
+    font-style: normal;
+    border-bottom: solid 1px #1b26d5;
+  }
+
+.main-material-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.material-input-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+p span {
+
+
+    font-size: 18px;
+    font-weight: 600;
+
+  }
+.material-input-box input {
+    width: 95%;
+    height: 40px;
+ border-radius: 7px;
+ outline: none;
+ border: 1px solid blue;
+ padding: 0 10px;
+}
+
+.back {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.back .btn_back
+{
+    width: 110px;
+    height: 45px;
+    color: white;
+    background-color: #3498db;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+   justify-content: center;
+    display: flex;
+    align-items: center;
+
+}
+.back .btn_edit
+{
+    width: 110px;
+    height: 45px;
+    color: white;
+    background-color: #6ca6e4;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.back a{
+ text-decoration: none;
+}
+
+/**responsive design*/
+@media (max-width: 650px)
+{
+    .container {
+        min-width: 280px;
+        }
+    .material-input-box {
+        margin-bottom: 12px;
+        width: 100%;
+    }
+
+    .main-material-info {
+        max-height: 380px;
+        overflow: auto;
+    }
+
+    .main-material-info::-webkit-scrollbar {
+        width: 0;
+    }
+    .back {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}

@@ -1,0 +1,138 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #3498db;
+    background-size: cover;
+}
+.container {
+    width: 100%;
+    max-width: 650px;
+    background: #f5f7f8;
+    padding: 28px;
+    margin: 0 28px;
+    border-radius: 10px;
+    box-shadow: inset -2px 2px 2px white;
+}
+
+.form-title {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 6px;
+    color: #6ca6e4;
+
+    border-bottom: solid 1px #1b26d5;
+  }
+
+.main-material-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.material-input-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+.material-input-box label {
+    width: 95%;
+    color: #2f2b2b;
+    font-size: 19px;
+    font-weight: 400;
+    margin: 5px 0;
+  }
+.material-input-box input {
+    width: 95%;
+    height: 40px;
+ border-radius: 7px;
+ outline: none;
+ border: 1px solid blue;
+ padding: 0 10px;
+}
+.material-input-box select {
+    width: 95%;
+    height: 40px;
+ border-radius: 7px;
+ outline: none;
+ border: 1px solid blue;
+ padding: 0 10px;
+}
+.form-submit-btn {
+    margin-top: 40px;
+}
+
+.form-submit-btn button{
+ display: block;
+ width: 100%;
+ margin-top: 10px;
+ font-size: 20px;
+ padding: 10px;
+ border: none;
+ border-radius: 3px;
+ color: white;
+ background: #3498db;
+}
+.form-submit-btn input{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background: #3498db;
+   }
+
+   .logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+}
+.logout_icon {
+   text-decoration: none;
+
+}
+.logout_icon i {
+   font-size: 25px;
+}
+
+/**responsive design*/
+@media (max-width: 650px)
+{
+    .container {
+        min-width: 280px;
+        }
+    .material-input-box {
+        margin-bottom: 12px;
+        width: 100%;
+    }
+
+    .main-material-info {
+        max-height: 380px;
+        overflow: auto;
+    }
+
+    .main-material-info::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+
+
+
