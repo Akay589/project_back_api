@@ -15,9 +15,17 @@ class Devis extends Model
      'CodeO',
      'PrixU',
      'CodeUnit',
-     'Montant'];
+     'Montant',
+      'type'
+    ];
 
      protected $primaryKey = 'NumD';
+
+
+     public $incrementing = false; // If Login is not an auto-incrementing integer
+
+     protected $keyType = 'integer'; //Define the type of the key
+
 
 
      public function materiels()

@@ -14,6 +14,11 @@ class Unite extends Model
 
      ];
 
+     protected $primaryKey = 'CodeUnit';
+
+     public $incrementing = false; // If Login is not an auto-incrementing integer
+
+     protected $keyType = 'string'; //Define the type of the key
 
 
      public function devis()

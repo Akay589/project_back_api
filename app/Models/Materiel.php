@@ -17,6 +17,11 @@ class Materiel extends Model
      ];
 
 
+     public $incrementing = false; // If Login is not an auto-incrementing integer
+
+     protected $keyType = 'string'; //Define the type of the key
+
+
      public function devis()
      {
          return $this->belongsToMany(Devis::class, 'depense', 'CodeM', 'NumD')

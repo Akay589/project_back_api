@@ -17,6 +17,12 @@ class Ouvrier extends Model
 
      ];
 
+     protected $primaryKey = 'CodeO';
+
+     public $incrementing = false; // If Login is not an auto-incrementing integer
+
+     protected $keyType = 'string'; //Define the type of the key
+
      public function fonction()
      {
          return $this->belongsTo(Fonction::class);

@@ -14,6 +14,10 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     protected $primaryKey = 'Login';
 
+    public $incrementing = false; // If Login is not an auto-incrementing integer
+
+    protected $keyType = 'string'; //
+
     protected $fillable = [
         'Login',
         'mdp',
