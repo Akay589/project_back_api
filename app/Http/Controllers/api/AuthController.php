@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
      //register function
-     public function register(Request $request)
-     {
-          $validator = Validator::make($request->all(), [
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
              'Login' => 'required|min:2|max:100',
              'mailU' => 'email|unique:users',
              'mdp' => 'required|min:8|max:100',
@@ -23,15 +23,16 @@ class AuthController extends Controller
              'AdresseConstruction' => 'required|min:6|max:100',
           ]);
 
-          if($validator->fails())
+        if($validator->fails())
           {
-             return response()->json([
+            return response()->json([
                  'status'=>400,
                  'message' => 'Validator failled'
 
              ]);
           }
-          else {
+        else
+        {
             $user = User::create([
                 'Login' => $request->Login,
                 'mailU' => $request->mailU,
@@ -44,28 +45,29 @@ class AuthController extends Controller
              ]);
             $token = $user->createToken($user->Login.'_Token')->plainTextToken;
 
-             return response()->json([
+            return response()->json([
                 'status'=>200,
                 'message' => 'registration successfull',
                 'data'=>$user->nomU,
                 'token'=>$token,
             ]);
-          }
-
-
         }
+
+
+    }
 
 
     //login function
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $validator = Validator::make($request->all(), [
 
             'Login' => 'required|min:2|max:100',
             'mdp' => 'required|min:8|max:100',
          ]);
 
-         if($validator->fails())
+        if($validator->fails())
          {
             return response()->json([
 
@@ -73,28 +75,28 @@ class AuthController extends Controller
 
             ]);
          }
-         else
+        else
          {
-              $user = User::where('Login', $request->Login)->first();
+            $user = User::where('Login', $request->Login)->first();
 
               if(! $user || ! Hash::check($request->mdp, $user->mdp))
-              {
-                return response()->json([
-                    'status'=>401,
-                    'message' => 'Invalid Credentials'
+               {
+                    return response()->json([
+                        'status'=>401,
+                        'message' => 'Invalid Credentials'
 
-                ]);
-              }
+                    ]);
+               }
               else
               {
-                $token = $user->createToken($user->Login.'_Token')->plainTextToken;
+                    $token = $user->createToken($user->Login.'_Token')->plainTextToken;
 
-                return response()->json([
-                   'status'=>200,
-                   'message' => 'Logged in successfully',
-                   'data'=>$user->nomU,
-                   'token'=>$token,
-               ]);
+                    return response()->json([
+                    'status'=>200,
+                    'message' => 'Logged in successfully',
+                    'data'=>$user->nomU,
+                    'token'=>$token,
+                     ]);
               }
          }
     }

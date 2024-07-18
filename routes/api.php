@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\DeviController;
 use App\Http\Controllers\api\FonctionController;
-use App\Http\Controllers\api\MachineController;
 use App\Http\Controllers\api\MaterielController;
 use App\Http\Controllers\api\OuvrierController;
 use App\Http\Controllers\api\UniteController;
@@ -74,11 +73,11 @@ use App\Http\Controllers\api\UserController;
 
 
 /** CRUD Devi */
-Route::post('/add_devis', [DeviController::class,'store']);
-Route::get('/list_devis', [DeviController::class,'show']);
-Route::get('/edit_devis/{CodeM}', [DeviController::class,'index']);
-Route::put('/update_devis/{CodeM}', [DeviController::class,'update']);
-Route::delete('/delete_devis/{CodeM}', [DeviController::class,'destroy']);
+    Route::post('/add_devis', [DeviController::class,'store']);
+    Route::get('/list_devis', [DeviController::class,'show']);
+    Route::get('/edit_devis/{NumD}', [DeviController::class,'index']);
+    Route::put('/update_devis/{NumD}', [DeviController::class,'update']);
+    Route::delete('/delete_devis/{NumD}', [DeviController::class,'destroy']);
 
 /** END CRUD devi */
 
