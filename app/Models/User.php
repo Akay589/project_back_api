@@ -2,47 +2,46 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Devi;
 use App\Models\Role;
+
+use App\Models\Devis;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $primaryKey = 'Login';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    public $incrementing = false; // If Login is not an auto-incrementing integer
+
+    protected $keyType = 'string'; //
+
     protected $fillable = [
         'Login',
         'mdp',
-        'nomU',
+         'nomU',
         'telU',
-        'mailU',
+         'mailU',
         'role_id',
-        'adresseConstruction'
-    ];
-    protected $primaryKey = 'Login';
+        'AdresseConstruction'
+     ];
 
-    //one user  only have onr role
-        public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
+     public function role()
+     {
+         return $this->belongsTo(Role::class);
+     }
 
-    //one user can have many devis
-    public function devis()
-    {
-        return $this->hasMany(Devi::class);
-    }
+     public function devis()
+     {
+         return $this->hasMany(Devis::class);
+     }
 
-    /**
+
+       /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
@@ -51,7 +50,7 @@ class User extends Authenticatable
         'mdp',
         'remember_token',
     ];
-       
+
     /**
      * Get the attributes that should be cast.
      *

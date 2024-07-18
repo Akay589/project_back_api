@@ -2,24 +2,28 @@
 
 namespace App\Models;
 
-use App\Models\Devi;
+use App\Models\Devis;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Unite extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'CodeUnit',
-        'unite'
+        'unite',
+
      ];
- 
+
      protected $primaryKey = 'CodeUnit';
-     //one unite can have many devis
+
+     public $incrementing = false; // If Login is not an auto-incrementing integer
+
+     protected $keyType = 'string'; //Define the type of the key
+
+
      public function devis()
      {
-         return $this->hasMany(Devi::class);
+         return $this->hasMany(Devis::class);
      }
- }
-
+}

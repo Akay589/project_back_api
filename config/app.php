@@ -2,6 +2,14 @@
 
 return [
 
+
+
+
+'aliases' => [
+
+ 'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+
+ ],
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -122,5 +130,7 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+
 
 ];
