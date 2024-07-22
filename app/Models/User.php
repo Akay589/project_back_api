@@ -14,31 +14,25 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $primaryKey = 'Login';
 
-    public $incrementing = false; // If Login is not an auto-incrementing integer
-
-    protected $keyType = 'string'; //
 
     protected $fillable = [
-        'Login',
-        'mdp',
-         'nomU',
-        'telU',
-         'mailU',
+        'name',
+        'email',
+         'tel',
+        'password',
+         'image',
         'role_id',
-        'AdresseConstruction'
+
      ];
 
+     //one user only have one role
      public function role()
      {
          return $this->belongsTo(Role::class);
      }
 
-     public function devis()
-     {
-         return $this->hasMany(Devis::class);
-     }
+
 
 
        /**
@@ -47,7 +41,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'mdp',
+        'password',
         'remember_token',
     ];
 
@@ -60,7 +54,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'mdp' => 'hashed',
+            'password' => 'hashed',
         ];
     }
 }
