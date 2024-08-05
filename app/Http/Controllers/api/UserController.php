@@ -19,7 +19,7 @@ class UserController extends Controller
         $user->mdp = Hash::make($request->input('mdp'));
         $user->nomU = $request->input('nomU');
         $user->telU = $request->input('telU');
-        $user->role_Login = $request->input('role_Login');
+
         $user->AdresseConstruction = $request->input('AdresseConstruction');
 
         $user->save();
@@ -27,7 +27,7 @@ class UserController extends Controller
         return response()->json([
             'status'=>200,
             'message' => 'User created successfully',
-            'user'=> $user->nomU
+
         ]);
     }
 
@@ -80,7 +80,7 @@ class UserController extends Controller
           $user->nomU = $request->nomU,
           $user->telU = $request->telU,
           $user->mailU = $request->mailU,
-          $user->role_id = $request->role_id,
+
           $user->AdresseConstruction = $request->AdresseConstruction,
         ]);
 

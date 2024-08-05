@@ -25,7 +25,7 @@ class Materiel extends Model
      public function devis()
      {
          return $this->belongsToMany(Devis::class, 'depense', 'CodeM', 'NumD')
-                     ->withPivot('dadeD', 'DateD')
-                     ->withTimestamps();
+                     ->withPivot( 'DateF','status');
+
      }
 }

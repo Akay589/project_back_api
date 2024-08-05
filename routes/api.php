@@ -4,19 +4,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\DeviController;
+use App\Http\Controllers\api\UserController;
+use App\Http\Controllers\api\UniteController;
+use App\Http\Controllers\api\DepenseController;
+use App\Http\Controllers\api\FactureController;
+use App\Http\Controllers\api\OuvrierController;
 use App\Http\Controllers\api\FonctionController;
 use App\Http\Controllers\api\MaterielController;
-use App\Http\Controllers\api\OuvrierController;
-use App\Http\Controllers\api\UniteController;
-use App\Http\Controllers\api\UserController;
 
 
 
 /** Authentication */
     Route::post('/login', [AuthController::class,'login']);
     Route::post('/register', [AuthController::class,'register']);
-
-
+    Route::post('/forgot_password', [AuthController::class,'forgetPasssword']);
+    Route::post('/reset_password', [AuthController::class,'resetPassword']);
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
     });
@@ -27,9 +29,9 @@ use App\Http\Controllers\api\UserController;
 /** CRUD User */
     Route::post('/add_user', [UserController::class,'store']);
     Route::get('/list_users', [UserController::class,'show']);
-    Route::get('/edit_user/{Login}', [UserController::class,'index']);
-    Route::put('/update_user/{Login}', [UserController::class,'update']);
-    Route::delete('/delete_user/{Login}', [UserController::class,'destroy']);
+    Route::get('/edit_user/{id}', [UserController::class,'index']);
+    Route::put('/update_user/{id}', [UserController::class,'update']);
+    Route::delete('/delete_user/{id}', [UserController::class,'destroy']);
 
 /** END CRUD User */
 
@@ -80,4 +82,19 @@ use App\Http\Controllers\api\UserController;
     Route::delete('/delete_devis/{NumD}', [DeviController::class,'destroy']);
 
 /** END CRUD devi */
+
+/** Facture */
+    Route::post('/devis/{NumD}/facture', [DeviController::class, 'facturer']);
+
+    Route::post('/depense/{NumD}/{CodeM}/payer', [DepenseController::class, 'payer']);
+    Route::post('/depense/{NumD}/{CodeM}/annuler', [DepenseController::class, 'annuler']);
+    Route::get('/facture_impayé', [DepenseController::class,'facture_impayé']);
+    Route::get('/facture_payé', [DepenseController::class,'facture_payé']);
+    Route::get('/facture_annule', [DepenseController::class,'facture_annule']);
+    Route::get('/facture/{numD}', [FactureController::class, 'show']);
+    Route::get('/facture/{numD}/download', [FactureController::class, 'download'])->name('facture.download');
+
+
+/**END  Facture */
+
 

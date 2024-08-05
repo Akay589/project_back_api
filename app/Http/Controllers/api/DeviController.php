@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Devis;
+use App\Models\Depense;
+use App\Models\Materiel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class DeviController extends Controller
@@ -13,22 +15,27 @@ class DeviController extends Controller
 
    public function store(Request $request)
    {
-       $devi = new Devis();
-       $devi->NumD = $request->input('NumD');
-       $devi->DateDv = $request->input('DateDv');
-       $devi->Login = $request->input('Login');
-       $devi->CodeO = $request->input('CodeO');
-       $devi->PrixU = $request->input('PrixU');
-       $devi->CodeUnit = $request->input('CodeUnit');
-       $devi->Montant = $request->input('Montant');
-       $devi->type = $request->input('type');
-       $devi->save();
-
-       return response()->json([
-           'status'=>200,
-           'message' => 'devi created successfully',
-
+       $request->validate([
+           'NumD' => 'required|integer|unique:devis,NumD',
+           'DateDv' => 'required|date',
+           'user_id' => 'required|exists:users,id',
+           'CodeO' => 'required|exists:ouvriers,CodeO',
+           'PrixU' => 'required|integer',
+           'CodeUnit' => 'required|exists:unites,CodeUnit',
+           'Quantité' => 'required|integer',
+           'Montant' => 'required|integer',
+           'CodeM' => 'required|string|exists:materiels,CodeM'
        ]);
+
+       $devis = Devis::create($request->only(['NumD', 'DateDv', 'user_id', 'CodeO', 'PrixU', 'CodeUnit', 'Quantité', 'Montant']));
+
+       $devis->materiels()->attach($request->CodeM, [
+           'status' => 'impayé',
+           'DateF' => now()
+       ]);
+
+       // Charger explicitement la relation 'materiels'
+       return response()->json($devis->load('materiels'), 201);
    }
 
    //show devi's list
@@ -77,12 +84,13 @@ class DeviController extends Controller
        $devi->update([
          $devi->NumD = $request->NumD,
          $devi->DateDv = $request->DateDv,
-         $devi->Login = $request->Login,
+         $devi->user_id = $request->user_id,
          $devi->CodeO = $request->CodeO,
          $devi->PrixU = $request->PrixU,
          $devi->CodeUnit = $request->CodeUnit,
+         $devi->Quantité = $request->Quantité,
          $devi->Montant = $request->Montant,
-         $devi->type = $request->type,
+
        ]);
 
        $devi->save();
@@ -117,4 +125,46 @@ class DeviController extends Controller
            ]);
        }
     }
+
+
+      // Marquer le devis comme facturé et créer les dépenses correspondantes
+      public function facturer($NumD)
+      {
+          // Trouver le devis par NumD
+          $devis = Devis::findOrFail($NumD);
+
+          // Vérifier si le devis a déjà été facturé
+          foreach ($devis->materiels as $materiel) {
+              $existingDepense = $devis->materiels()->wherePivot('CodeM', $materiel->pivot->CodeM)->first();
+              if ($existingDepense && $existingDepense->pivot->status != 'impayé') {
+                  return response()->json(['message' => 'Le devis a déjà été facturé.'], 400);
+              }
+          }
+
+          // Mettre à jour ou créer les entrées dans la table pivot 'depense' avec le statut 'impayé'
+          foreach ($devis->materiels as $materiel) {
+              $devis->materiels()->updateExistingPivot($materiel->pivot->CodeM, [
+                  'status' => 'impayé',
+                  'DateF' => now()
+              ]);
+          }
+
+          return response()->json(['message' => 'Devis facturé avec succès']);
+      }
+
+
+      // Marquer la dépense comme payée
+      public function pay($NumD, $CodeM)
+      {
+            $depense = Depense::where('NumD', $NumD)->where('CodeM', $CodeM)->first();
+
+            if (!$depense) {
+                return response()->json(['message' => 'Dépense non trouvée'], 404);
+            }
+
+            $depense->status = 'payé';
+            $depense->save();
+
+            return response()->json(['message' => 'Dépense payée'], 200);
+      }
 }

@@ -23,8 +23,19 @@ class UserSeeder extends Seeder
                 'nomU' => 'Spendo Admin',
                 'telU' => '0345842071',
                 'mailU' => 'admin@masovia-madagascar.com',
-                'role_id' => 1,
                 'AdresseConstruction' => 'VP 14 ivandry'
+            ]
+        );
+        DB::table('users')->insert(
+
+            [
+
+                'Login' => 'fraz',
+                'mdp' => Hash::make('francois0107'),
+                'nomU' => 'Francois Raz',
+                'telU' => '034659785',
+                'mailU' => 'francois@masovia-madagascar.com',
+                'AdresseConstruction' => 'VP 12 ivanja'
             ]
         );
     }

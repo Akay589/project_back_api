@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('depense', function (Blueprint $table) {
             $table->unsignedInteger('NumD');
             $table->string('CodeM');
-            $table->integer('dadeD');
-            $table->date('DateD');
+
+            $table->string('status');
+            $table->date('DateF');
             $table->timestamps();
 
             // Primary key composite

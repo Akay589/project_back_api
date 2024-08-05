@@ -12,11 +12,9 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $primaryKey = 'Login';
 
-    public $incrementing = false; // If Login is not an auto-incrementing integer
 
-    protected $keyType = 'string'; //
+
 
     protected $fillable = [
         'Login',
@@ -24,14 +22,10 @@ class User extends Authenticatable
          'nomU',
         'telU',
          'mailU',
-        'role_id',
         'AdresseConstruction'
      ];
 
-     public function role()
-     {
-         return $this->belongsTo(Role::class);
-     }
+
 
      public function devis()
      {
@@ -57,7 +51,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            'mailU_verified_at' => 'datetime',
             'mdp' => 'hashed',
         ];
     }

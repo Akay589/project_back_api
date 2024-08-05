@@ -11,12 +11,13 @@ class Devis extends Model
     protected $fillable = [
       'NumD',
      'DateDv',
-     'Login',
+     'user_id',
      'CodeO',
      'PrixU',
      'CodeUnit',
+     'Quantité',
      'Montant',
-      'type'
+
     ];
 
      protected $primaryKey = 'NumD';
@@ -31,8 +32,7 @@ class Devis extends Model
      public function materiels()
      {
          return $this->belongsToMany(Materiel::class, 'depense', 'NumD', 'CodeM')
-                     ->withPivot('dadeD', 'DateD')
-                     ->withTimestamps();
+                     ->withPivot('DateF', 'status');
      }
 
     public function ouvrier()
@@ -49,4 +49,6 @@ class Devis extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
 }
