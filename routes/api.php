@@ -7,7 +7,6 @@ use App\Http\Controllers\api\DeviController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\UniteController;
 use App\Http\Controllers\api\DepenseController;
-use App\Http\Controllers\api\FactureController;
 use App\Http\Controllers\api\OuvrierController;
 use App\Http\Controllers\api\FonctionController;
 use App\Http\Controllers\api\MaterielController;
@@ -88,13 +87,9 @@ use App\Http\Controllers\api\MaterielController;
 
     Route::post('/depense/{NumD}/{CodeM}/payer', [DepenseController::class, 'payer']);
     Route::post('/depense/{NumD}/{CodeM}/annuler', [DepenseController::class, 'annuler']);
-    Route::get('/facture_impayé', [DepenseController::class,'facture_impayé']);
-    Route::get('/facture_payé', [DepenseController::class,'facture_payé']);
+    Route::get('/facture_impaye', [DepenseController::class,'facture_impayé']);
+    Route::get('/facture_paye', [DepenseController::class,'facture_payé']);
     Route::get('/facture_annule', [DepenseController::class,'facture_annule']);
-    Route::get('/facture/{numD}', [FactureController::class, 'show']);
-    Route::get('/facture/{numD}/download', [FactureController::class, 'download'])->name('facture.download');
-
-
-/**END  Facture */
+    /**END  Facture */
 
 
